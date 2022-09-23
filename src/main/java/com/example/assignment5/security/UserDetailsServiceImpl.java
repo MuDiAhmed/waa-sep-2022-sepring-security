@@ -2,7 +2,6 @@ package com.example.assignment5.security;
 
 import com.example.assignment5.entity.User;
 import com.example.assignment5.repository.UserRepo;
-import com.example.assignment5.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

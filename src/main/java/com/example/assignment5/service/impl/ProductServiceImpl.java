@@ -7,6 +7,7 @@ import com.example.assignment5.mapper.ProductMapper;
 import com.example.assignment5.repository.ProductRepo;
 import com.example.assignment5.repository.UserRepo;
 import com.example.assignment5.security.UserDetailsImpl;
+import com.example.assignment5.service.CurrentUser;
 import com.example.assignment5.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final ProductMapper productMapper;
     private final UserRepo userRepo;
+    private final CurrentUser currentUser;
 
     @Override
     public List<ProductDto> getAll() {
@@ -33,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto create(ProductDto productDto) {
         Product product = productMapper.toEntity(productDto);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = currentUser.getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Optional<User> user = userRepo.findById(userDetails.getId());
         product.setUser(user.get());

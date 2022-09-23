@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Data
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -23,11 +23,17 @@ public class Product {
     private Category category;
 
     public void setUser(User user){
+        if(user == null){
+            return;
+        }
         this.user = user;
         user.addProduct(this);
     }
 
     public void setCategory(Category category){
+        if(category == null){
+            return;
+        }
         this.category = category;
         category.addProduct(this);
     }

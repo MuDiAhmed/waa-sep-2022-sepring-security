@@ -30,7 +30,6 @@ public class UserDetailsImpl implements UserDetails {
                 .stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_"+role.getName().toUpperCase()))
                 .collect(Collectors.toList());
-
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -49,7 +49,7 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() * jwtExpirationLength))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationLength))
                 .signWith(SignatureAlgorithm.HS256, jwtSecretKey)
                 .compact();
     }
